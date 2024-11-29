@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}FitTab{% endblock %}</title>
+    
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    {% block extra_css %}{% endblock %}
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!-- Chatbot CSS (only on non-auth pages) -->
+    {% if not hide_chatbot %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chatbot.css') }}">
+    {% endif %}
+</head>
+<body>
+    <!-- Navigation (except for login/register pages) -->
+    {% if not hide_nav %}
+    <header>
+        <h1><i class="fas fa-dumbbell"></i> FitTab</h1>1
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav>
+            <div class="nav-menu">
+                <a href="{{ url_for('info') }}"><i class="fas fa-home"></i> Home</a>
+                <a href="{{ url_for('profile') }}"><i class="fas fa-user"></i> Profile</a>
+                <a href="{{ url_for('exercise') }}"><i class="fas fa-dumbbell"></i> Exercise</a>
+                <a href="{{ url_for('workouts') }}"><i class="fas fa-history"></i> History</a>
+                <a href="{{ url_for('diet') }}"><i class="fas fa-utensils"></i> Diet</a>
+                <a href="{{ url_for('nearest_gym') }}"><i class="fas fa-map-marker-alt"></i> Find Gym</a>
+                <a href="{{ url_for('index') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </nav>
+    </header>
+    {% endif %}
+
+    <!-- Main Content -->
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Chatbot (only on non-auth pages) -->
+    {% if not hide_chatbot %}
+    <div id="chatbot-container" class="chatbot-minimized">
+        <div id="chatbot-header">
+            <span id="chatbot-title">FitTab Assistant</span>
+            <button id="chatbot-minimize" class="chatbot-button">
+                <i class="fas fa-minus"></i>
+            </button>
+        </div>
+        <div id="chatbot-messages"></div>
+        <div id="chatbot-input-container">
+            <div id="typing-indicator" style="display: none;">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <input type="text" id="chatbot-input" placeholder="Ask me anything about fitness...">
+            <button id="chatbot-send" class="chatbot-button">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Common JavaScript -->
+    <script src="{{ url_for('static', filename='js/js.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/nav.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+
+    <!-- Chatbot JavaScript (only on non-auth pages) -->
+    {% if not hide_chatbot %}
+    <script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
+    {% endif %}
+</body>
+</html>

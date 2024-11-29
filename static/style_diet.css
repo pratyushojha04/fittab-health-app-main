@@ -1,0 +1,664 @@
+/* static/style_diet.css */
+
+/* Basic styling for body */
+:root {
+    --primary-color: rgb(0, 103, 105);
+    --secondary-color: rgb(64, 165, 120);
+    --accent-color: rgb(157, 222, 139);
+    --highlight-color: rgb(230, 255, 148);
+    --text-light: #ffffff;
+    --text-dark: #333333;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-light);
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Styling for header */
+header {
+    background-color: rgba(0, 103, 105, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1rem;
+    box-shadow: var(--shadow);
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
+    background: linear-gradient(45deg, var(--accent-color), var(--highlight-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: var(--text-light);
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.nav-toggle:hover {
+    color: var(--accent-color);
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Navigation Styles */
+nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    background: rgba(64, 165, 120, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(157, 222, 139, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+nav a:hover {
+    background: rgba(64, 165, 120, 0.2);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+    border-color: var(--accent-color);
+}
+
+nav a i {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+nav a:hover i {
+    transform: scale(1.1);
+}
+
+/* Mobile Navigation */
+@media screen and (max-width: 768px) {
+    nav a {
+        padding: 0.75rem 1rem;
+        border-radius: 6px;
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    nav a:hover {
+        transform: translateX(5px);
+        background: rgba(255, 255, 255, 0.15);
+    }
+}
+
+/* Mobile styles */
+@media screen and (max-width: 768px) {
+    .nav-toggle {
+        display: block;
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.9);
+        backdrop-filter: blur(10px);
+        padding: 1rem;
+        flex-direction: column;
+        min-width: 200px;
+        border-radius: 0 0 4px 4px;
+        z-index: 999;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    nav a {
+        width: 100%;
+        text-align: left;
+        padding: 0.75rem 1rem;
+    }
+}
+
+/* Styling for profile dropdown */
+.profile-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.profile-button {
+    background-color: #333;
+    color: #06a656;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 120px;
+    z-index: 1;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #28bf20;
+}
+
+.profile-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Styling for profile picture */
+.profile-picture {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #333;
+}
+
+.profile-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Styling for content section */
+.content {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.content h2 {
+    font-size: 2.5rem;
+    margin: 0;
+    text-align: center;
+    color: var(--text-light);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.content p {
+    text-align: center;
+    margin-bottom: 20px;
+    color: black;
+}
+
+/* Styling for footer */
+/*
+footer {
+    background-color: #120b0b;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}*/
+
+/* Styling for download button */
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    color: white;
+    background: #007bff;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.btn:hover {
+    background: #0056b3;
+}
+
+button {
+    background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+    color: var(--text-light);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    transform: translateY(-1px);
+}
+
+.diet-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+}
+
+.meal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.meal-card {
+    background: rgba(0, 103, 105, 0.1);
+    border: 1px solid rgba(157, 222, 139, 0.2);
+    border-radius: 12px;
+    padding: 15px;
+    margin: 10px 0;
+    transition: all 0.3s ease;
+}
+
+.meal-card:hover {
+    background: rgba(0, 103, 105, 0.2);
+    transform: translateY(-3px);
+}
+
+.meal-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.meal-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+    font-size: 1.5rem;
+}
+
+.meal-title {
+    font-size: 1.5rem;
+    color: var(--text-light);
+    margin: 0;
+}
+
+.meal-time {
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+}
+
+.meal-content {
+    margin-bottom: 1.5rem;
+}
+
+.food-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    margin-bottom: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.food-item:hover {
+    transform: translateX(5px);
+}
+
+.food-name {
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.food-calories {
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+.nutrition-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.nutrition-item {
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 1rem;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.nutrition-value {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+    margin-bottom: 0.25rem;
+}
+
+.nutrition-label {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.add-meal-button {
+    background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+    color: var(--text-light);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+    display: block;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.add-meal-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.diet-filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.filter-button {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-button:hover,
+.filter-button.active {
+    background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 0.5rem;
+    }
+
+    nav {
+        flex-direction: column;
+        width: 100%;
+        padding: 0.5rem;
+    }
+
+    nav a {
+        width: 100%;
+        text-align: center;
+        margin: 0.2rem 0;
+    }
+
+    .diet-container {
+        padding: 1rem;
+        margin: 1rem;
+    }
+
+    .meal-card {
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+
+    .meal-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    button {
+        width: 100%;
+        max-width: 300px;
+        margin: 0.5rem auto;
+    }
+}
+
+/* Tablet */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .meal-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop */
+@media screen and (min-width: 1025px) {
+    .meal-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.diet-plan {
+    background: rgba(64, 165, 120, 0.1);
+    border: 1px solid rgba(157, 222, 139, 0.2);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px 0;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.diet-plan:hover {
+    transform: translateY(-5px);
+    background: rgba(64, 165, 120, 0.2);
+}
+
+.diet-form {
+    background: rgba(0, 103, 105, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+.diet-form input,
+.diet-form select,
+.diet-form textarea {
+    border: 1px solid rgba(64, 165, 120, 0.3);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.diet-form input:focus,
+.diet-form select:focus,
+.diet-form textarea:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(64, 165, 120, 0.2);
+}
+
+.progress-bar {
+    background: rgba(157, 222, 139, 0.2);
+    border-radius: 20px;
+    height: 10px;
+    overflow: hidden;
+}
+
+.progress-bar .progress {
+    background: var(--secondary-color);
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+.content {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+}
+
+.glossy-container {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.1),
+        0 1px 3px rgba(0, 0, 0, 0.08),
+        inset 0 1px 1px rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 2rem;
+}
+
+.glossy-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 6px 12px rgba(0, 0, 0, 0.15),
+        0 2px 4px rgba(0, 0, 0, 0.12),
+        inset 0 1px 1px rgba(255, 255, 255, 0.7);
+}
+
+.user-info {
+    margin-bottom: 2rem;
+}
+
+.user-info p {
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.6;
+}
+
+.user-info strong {
+    color: #006769;
+    margin-right: 0.5rem;
+}
+
+.diet-suggestions {
+    margin-top: 2rem;
+}
+
+.diet-suggestions h3 {
+    color: #006769;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.diet-suggestions p {
+    margin: 1rem 0;
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.6;
+}
+
+.diet-suggestions ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.diet-suggestions li {
+    margin: 0.8rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: #333;
+    line-height: 1.6;
+}
+
+.diet-suggestions li:before {
+    content: '•';
+    color: #40A578;
+    position: absolute;
+    left: 0;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+button {
+    background: linear-gradient(45deg, #006769, #40A578);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 1rem;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    transform: translateY(0);
+}

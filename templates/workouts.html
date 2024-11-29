@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Workouts</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_workout.css') }}">
+</head>
+<body>
+    <header>
+        <h1><i class="fas fa-history"></i> FitTab Workout History</h1>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav>
+            <div class="nav-menu">
+                <a href="{{ url_for('info') }}"><i class="fas fa-home"></i> Home</a>
+                <a href="{{ url_for('profile') }}"><i class="fas fa-user"></i> Profile</a>
+                <a href="{{ url_for('exercise') }}"><i class="fas fa-dumbbell"></i> Exercise</a>
+                <a href="{{ url_for('diet') }}"><i class="fas fa-utensils"></i> Diet</a>
+                <a href="{{ url_for('index') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Your Workouts</h1>
+
+        <!-- Log Workout Form -->
+        <div>
+            <h2>Add a New Workout</h2>
+            <form method="POST" action="{{ url_for('workouts') }}">
+                <label for="exercise">Exercise:</label>
+                <input type="text" id="exercise" name="exercise" required>
+                <br>
+                <label for="sets">Sets:</label>
+                <input type="number" id="sets" name="sets" required>
+                <br>
+                <label for="reps">Reps:</label>
+                <input type="number" id="reps" name="reps" required>
+                <br>
+                <label for="weight">Weight (optional):</label>
+                <input type="number" id="weight" name="weight" step="0.1">
+                <br>
+                <button type="submit">Add Workout</button>
+            </form>
+        </div>
+
+        <!-- Workout List -->
+        <div>
+            <h2>Your Workout History</h2>
+            <ul>
+                {% for workout in workouts %}
+                    <li>{{ workout.date }} - {{ workout.exercise }}: {{ workout.sets }} sets of {{ workout.reps }} reps {% if workout.weight %} at {{ workout.weight }} kg {% endif %}</li>
+                {% endfor %}
+            </ul>
+            <form id="downloadForm" action="{{ url_for('download_workouts') }}" method="get">
+                <button type="submit">Download PDF</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Function to prepare PDF data for download
+        function prepareDownload() {
+            // Just submit the form to trigger PDF download
+            document.getElementById('downloadForm').submit();
+        }
+    </script>
+    <script src="{{ url_for('static', filename='js/nav.js') }}"></script>
+</body>
+</html>

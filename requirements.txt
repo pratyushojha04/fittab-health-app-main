@@ -1,0 +1,17 @@
+reportlab 
+Flask 
+opencv-python 
+SQLAlchemy 
+mediapipe 
+numpy 
+Flask-Migrate 
+Werkzeug 
+psycopg2-binary
+gunicorn
+flask-socketio
+python-socketio
+requests>=2.31.0
+flask-cors  
+google.generativeai
+markdown
+bleach
